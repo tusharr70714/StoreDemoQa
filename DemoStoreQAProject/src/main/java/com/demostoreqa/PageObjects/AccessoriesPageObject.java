@@ -74,6 +74,7 @@ public class AccessoriesPageObject extends DemoStoreQADefaultPageObject {
 		WebElement ProductCategory=driver.findElement(By.xpath("//*[@id='post-105']/header/h1"));
 				String Category=ProductCategory.getText();
 				
+				
 				return Category;
 				
 	}
