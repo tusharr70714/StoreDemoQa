@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	<test name="Test">
+
+	<!-- 	<parameter name="country" value="IN"></parameter>
+		<parameter name="state" value="Maharashtra"></parameter>
+		<parameter name="email" value="tushar.rajput9311gmail.com"></parameter>
+		<parameter name="FN" value="Tushar"></parameter>
+		<parameter name="LN" value="Rajput"></parameter>
+		<parameter name="Add" value="201,SB Road"></parameter>
+		<parameter name="city" value="Pune"></parameter>
+		<parameter name="state2" value="Maharashtra"></parameter>
+		<parameter name="country_main" value="IN"></parameter>
+		<parameter name="PS" value="422006"></parameter>
+		<parameter name="phn" value="9856784598"></parameter> -->
+
+		<classes>
+			<class name="com.demostoreqa.FunctionalTests.DemoStoreQAFunctionalTest" />
+		</classes>
+	</test> <!-- Test -->
+</suite> <!-- Suite -->
