@@ -258,6 +258,7 @@ public class DemoStoreQAFunctionalTest {
 		Checkobj.verifyTotalPriceOfProduct("Magic");
 		Checkobj.productQuantityUpdate("Magic Mouse", "3");
 		Checkobj.verifyTotalPriceOfProduct("Magic");
+		System.out.println("Git Changes");
 	}	
 	@AfterMethod
 	public void tearDown() {
