@@ -5,9 +5,9 @@
     <classes>
       <class name="com.demostoreqa.FunctionalTests.DemoStoreQAFunctionalTest">
         <methods>
+          <include name="verifyDuplicateEntriesInCart"/>
           <include name="tearDown"/>
           <include name="setUp"/>
-          <include name="enterCheckoutUserDetails" invocation-numbers="0"/>
         </methods>
       </class> <!-- com.demostoreqa.FunctionalTests.DemoStoreQAFunctionalTest -->
     </classes>

@@ -88,7 +88,8 @@ public class CheckoutPageObjects {
 		}
 	}
 
-	public void verifyTotalPriceOfProduct(String item) {
+	public boolean verifyTotalPriceOfProduct(String item) {
+		int count = 0;
 		WebElement CheckoutTable = driver.findElement(By.xpath("//*[@id='checkout_page_container']/div[1]/table"));
 		List<WebElement> rows = CheckoutTable.findElements(By.tagName("tr"));
 		// int row_count=rows.size();
@@ -117,15 +118,23 @@ public class CheckoutPageObjects {
 				String new_tot_price = tot_price.replaceAll("[$]", "");
 				double total_price = Double.parseDouble(new_tot_price);
 
-				if (total_product_price == total_price) {
-					System.out.println("Test passed: Total Price of Product verfied successfully");
+				if (total_product_price == total_price)
+				{ count++;
+					//System.out.println("Test passed: Total Price of Product verfied successfully");
 				}
-
-			}
+				}
+		}
+		if(count > 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
 		}
 	}
 
-	public void verifyAllProductsTotalPrice()
+	public boolean verifySubTotalPrice()
 	{ 	double Tot_Product_Price = 0;
 	WebElement CheckoutTable = driver.findElement(By.xpath("//*[@id='checkout_page_container']/div[1]/table"));
 	List<WebElement> rows=CheckoutTable.findElements(By.tagName("tr"));
@@ -147,9 +156,14 @@ public class CheckoutPageObjects {
 		String total = sub_total.replaceAll("[$]", "");
 		Double Sub_Total_Price=Double.parseDouble(total);
 		if(Tot_Product_Price == Sub_Total_Price)
-		{
-			System.out.println("Subtotal price is equal to the sum of the Prices of Products present in the cart");
+		{   return true;
+			//System.out.println("Subtotal price is equal to the sum of the Prices of Products present in the cart");
 		}
+		else
+		{
+			return false;	
+		}
+	
 	}
 	
 	public void clickContinue() throws InterruptedException
@@ -208,9 +222,38 @@ public class CheckoutPageObjects {
 		
 	}
 	
-	public void clickOnPurchase()
+	public boolean clickOnPurchase()
 	{
 		WebElement Purchase = driver.findElement(By.xpath("//*[@id='wpsc_shopping_cart_container']/form/div[4]/div/div/span/input"));
 		Purchase.click();
+		return true;
+	}
+	
+	public boolean checkDuplicateItems(String Item)
+	{   int ProductCount = 0;
+	WebElement CheckoutTable = driver.findElement(By.className("checkout_cart"));
+		List<WebElement> rows = CheckoutTable.findElements(By.tagName("tr"));
+		List<WebElement> columns = driver.findElements(By.tagName("td"));
+		//int col_count = columns.size();
+		int row_count = rows.size();
+		
+		for(WebElement row : rows)
+		{
+			if(columns.get(1).getText().equalsIgnoreCase(Item))
+					/*columns.get(1).getText().equalsIgnoreCase(Item)*/
+			{
+				ProductCount++;
+			}
+		}
+		
+		System.out.println("ProductCount:"+ProductCount);
+		
+		if(ProductCount > 1)
+		{
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 }
