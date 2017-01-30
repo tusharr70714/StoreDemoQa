@@ -141,22 +141,22 @@ public class DemoStoreQAFunctionalTest {
 	// "state2", "country_main", "PS", "phn" })
 
 	@Test(enabled = false, dataProvider = "UserAdress", dataProviderClass = DataProvider.class)
-	public void verifyUserIsAbleToPurchaseSingleProduct(String ctry, String st, String eml, String FirstN, String LastN,
-			String Addss, String ct, String st2, String ctry_main, String PosS, String phone)
+	public void verifyUserIsAbleToPurchaseSingleProduct(String country, String state, String email, String FN,
+			String LN, String Add, String city, String state2, String country_main, String PS, String phn)
 			throws InterruptedException {
 		Homeobj.hoverMenuAndClick("Accessories");
 		Homeobj.selectMenuItem("Magic Mouse");
 		Homeobj.addToCart();
 		Checkobj = Homeobj.gotoCheckout();
 		Checkobj.clickContinue();
-		Checkobj.entershippingDetails(ctry, st, eml, FirstN, LastN, Addss, ct, st2, ctry_main, PosS, phone);
+		Checkobj.entershippingDetails(country, state, email, FN, LN, Add, city, state2, country_main, PS, phn);
 		Checkobj.clickOnPurchase();
 		System.out.println("Purchase completed successfully");
 	}
 
 	@Test(enabled = false, dataProvider = "UserAdress", dataProviderClass = DataProvider.class)
-	public void verifyUserIsAbleToPurchaseMultipleProduct(String ctry, String st, String eml, String FirstN,
-			String LastN, String Addss, String ct, String st2, String ctry_main, String PosS, String phone)
+	public void verifyUserIsAbleToPurchaseMultipleProduct(String country, String state, String email, String FN,
+			String LN, String Add, String city, String state2, String country_main, String PS, String phn)
 			throws InterruptedException
 
 	{
@@ -168,14 +168,14 @@ public class DemoStoreQAFunctionalTest {
 		Homeobj.addToCart();
 		Checkobj = Homeobj.gotoCheckout();
 		Checkobj.clickContinue();
-		Checkobj.entershippingDetails(ctry, st, eml, FirstN, LastN, Addss, ct, st2, ctry_main, PosS, phone);
+		Checkobj.entershippingDetails(country, state, email, FN, LN, Add, city, state2, country_main, PS, phn);
 		Checkobj.clickOnPurchase();
 		System.out.println("Purchase completed successfully");
 	}
 
 	@Test(enabled = false, dataProvider = "UserAdress", dataProviderClass = DataProvider.class)
-	public void verifyUserCanRemoveProductFromCartAndPurchase(String ctry, String st, String eml, String FirstN,
-			String LastN, String Addss, String ct, String st2, String ctry_main, String PosS, String phone)
+	public void verifyUserCanRemoveProductFromCartAndPurchase(String country, String state, String email, String FN,
+			String LN, String Add, String city, String state2, String country_main, String PS, String phn)
 			throws InterruptedException {
 		Homeobj.hoverMenuAndClick("Accessories");
 		Homeobj.selectMenuItem("Magic Mouse");
@@ -187,7 +187,7 @@ public class DemoStoreQAFunctionalTest {
 		Checkobj.removeProduct("Magic Mouse");
 		System.out.println("Product Removed successfully");
 		Checkobj.clickContinue();
-		Checkobj.entershippingDetails(ctry, st, eml, FirstN, LastN, Addss, ct, st2, ctry_main, PosS, phone);
+		Checkobj.entershippingDetails(country, state, email, FN, LN, Add, city, state2, country_main, PS, phn);
 		Checkobj.clickOnPurchase();
 		System.out.println("Purchase completed successfully");
 	}
@@ -242,7 +242,7 @@ public class DemoStoreQAFunctionalTest {
 		Checkobj.verifyTotalPriceOfProduct("Magic");
 	}
 
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void verifyDuplicateEntriesInCart() throws InterruptedException {
 		Homeobj.hoverMenuAndClick("Accessories");
 		Homeobj.selectMenuItem("Magic Mouse");
@@ -284,7 +284,7 @@ public class DemoStoreQAFunctionalTest {
 		Assert.assertEquals(Checkobj.verifySubTotalPrice(), true);
 	}
 
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void verifyEachProductPriceAddedFromDiffCategories() throws InterruptedException {
 		Homeobj.hoverMenuAndClick("Accessories");
 		Homeobj.selectMenuItem("Magic Mouse");

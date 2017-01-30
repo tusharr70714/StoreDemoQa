@@ -5,7 +5,7 @@
     <classes>
       <class name="com.demostoreqa.FunctionalTests.DemoStoreQAFunctionalTest">
         <methods>
-          <include name="verifyEachProductPriceAddedFromDiffCategories"/>
+          <include name="verifyDuplicateEntriesInCart"/>
           <include name="tearDown"/>
           <include name="setUp"/>
         </methods>

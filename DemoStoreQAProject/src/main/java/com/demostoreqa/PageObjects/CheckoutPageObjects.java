@@ -76,7 +76,7 @@ public class CheckoutPageObjects {
 	public void removeProduct(String item) throws InterruptedException {
 		WebElement CheckoutTable = driver.findElement(By.xpath("//*[@id='checkout_page_container']/div[1]/table"));
 		List<WebElement> rows = CheckoutTable.findElements(By.tagName("tr"));
-		//int row_count = rows.size();
+		// int row_count = rows.size();
 		for (WebElement row : rows) {
 			List<WebElement> column = row.findElements(By.tagName("td"));
 			int col_count = column.size();
@@ -118,141 +118,132 @@ public class CheckoutPageObjects {
 				String new_tot_price = tot_price.replaceAll("[$]", "");
 				double total_price = Double.parseDouble(new_tot_price);
 
-				if (total_product_price == total_price)
-				{ count++;
-					//System.out.println("Test passed: Total Price of Product verfied successfully");
+				if (total_product_price == total_price) {
+					count++;
+					// System.out.println("Test passed: Total Price of Product
+					// verfied successfully");
 				}
-				}
+			}
 		}
-		if(count > 0)
-		{
+		if (count > 0) {
 			return true;
-		}
-		else
-		{
+		} else {
 			return false;
 		}
 	}
 
-	public boolean verifySubTotalPrice()
-	{ 	double Tot_Product_Price = 0;
-	WebElement CheckoutTable = driver.findElement(By.xpath("//*[@id='checkout_page_container']/div[1]/table"));
-	List<WebElement> rows=CheckoutTable.findElements(By.tagName("tr"));
-	for(WebElement row : rows)
-	{   
-		List<WebElement> column=row.findElements(By.tagName("td"));
-		int col_count=column.size();
-		if(col_count>0)
-		{
-			String tot_price = column.get(4).findElement(By.className("pricedisplay")).getText();
-			String new_tot_price = tot_price.replaceAll("[$]", "");
-			double total_price = Double.parseDouble(new_tot_price);
-			
-			Tot_Product_Price = Tot_Product_Price + total_price;
+	public boolean verifySubTotalPrice() {
+		double Tot_Product_Price = 0;
+		WebElement CheckoutTable = driver.findElement(By.xpath("//*[@id='checkout_page_container']/div[1]/table"));
+		List<WebElement> rows = CheckoutTable.findElements(By.tagName("tr"));
+		for (WebElement row : rows) {
+			List<WebElement> column = row.findElements(By.tagName("td"));
+			int col_count = column.size();
+			if (col_count > 0) {
+				String tot_price = column.get(4).findElement(By.className("pricedisplay")).getText();
+				String new_tot_price = tot_price.replaceAll("[$]", "");
+				double total_price = Double.parseDouble(new_tot_price);
+
+				Tot_Product_Price = Tot_Product_Price + total_price;
+			}
 		}
-	}
-		WebElement sub_total_price=driver.findElement(By.xpath("//*[@id='checkout_page_container']/div[1]/span/span"));
+		WebElement sub_total_price = driver
+				.findElement(By.xpath("//*[@id='checkout_page_container']/div[1]/span/span"));
 		String sub_total = sub_total_price.getText();
 		String total = sub_total.replaceAll("[$]", "");
-		Double Sub_Total_Price=Double.parseDouble(total);
-		if(Tot_Product_Price == Sub_Total_Price)
-		{   return true;
-			//System.out.println("Subtotal price is equal to the sum of the Prices of Products present in the cart");
+		Double Sub_Total_Price = Double.parseDouble(total);
+		if (Tot_Product_Price == Sub_Total_Price) {
+			return true;
+			// System.out.println("Subtotal price is equal to the sum of the
+			// Prices of Products present in the cart");
+		} else {
+			return false;
 		}
-		else
-		{
-			return false;	
-		}
-	
+
 	}
-	
-	public void clickContinue() throws InterruptedException
-	{
+
+	public void clickContinue() throws InterruptedException {
 		WebElement Continue = driver.findElement(By.xpath("//*[@id='checkout_page_container']/div[1]/a/span"));
 		Continue.click();
 		Thread.sleep(2000);
 	}
-	
-	public void entershippingDetails(String country, String state, String email,String FN,String LN,String Add,String city,String state2,String country_main,String PS,String phn)
-	{
+
+	public void entershippingDetails(String country, String state, String email, String FN, String LN, String Add,
+			String city, String state2, String country_main, String PS, String phn) {
 		Select Country = new Select(driver.findElement(By.id("current_country")));
 		Country.selectByValue(country);
-		
-//		WebElement BillingAddress = (WebElement) driver.findElement(By.className("wpsc_checkout_table table-1"));
-//		List<WebElement> rows = BillingAddress.findElements(By.tagName("tr"));
-//		int row_count = rows.size();
-//		for(WebElement row : rows)
-//		{
-//			List<WebElement> column = driver.findElements(By.tagName("td"));
-//			column.get(1).findElement(By.wpsc_checkout_form_2)
-//		}
-		
+
+		// WebElement BillingAddress = (WebElement)
+		// driver.findElement(By.className("wpsc_checkout_table table-1"));
+		// List<WebElement> rows =
+		// BillingAddress.findElements(By.tagName("tr"));
+		// int row_count = rows.size();
+		// for(WebElement row : rows)
+		// {
+		// List<WebElement> column = driver.findElements(By.tagName("td"));
+		// column.get(1).findElement(By.wpsc_checkout_form_2)
+		// }
+
 		WebElement State = driver.findElement(By.xpath("//*[@id='change_country']/input[2]"));
 		State.sendKeys(state);
-		
+
 		WebElement Email = driver.findElement(By.id("wpsc_checkout_form_9"));
 		Email.sendKeys(email);
-		
+
 		WebElement First_Name = driver.findElement(By.id("wpsc_checkout_form_2"));
 		First_Name.sendKeys(FN);
-		
+
 		WebElement Last_Name = driver.findElement(By.id("wpsc_checkout_form_3"));
 		Last_Name.sendKeys(LN);
-		
+
 		WebElement Address = driver.findElement(By.id("wpsc_checkout_form_4"));
 		Address.sendKeys(Add);
-		
+
 		WebElement City = driver.findElement(By.id("wpsc_checkout_form_5"));
-		City.sendKeys(city);	
-		
+		City.sendKeys(city);
+
 		WebElement State2 = driver.findElement(By.id("wpsc_checkout_form_6"));
-		State2.sendKeys(state2);	
-		
+		State2.sendKeys(state2);
+
 		Select CountryMain = new Select(driver.findElement(By.id("wpsc_checkout_form_7")));
 		CountryMain.selectByValue(country_main);
-		
+
 		WebElement Postal_Code = driver.findElement(By.id("wpsc_checkout_form_8"));
 		Postal_Code.sendKeys(PS);
-		
+
 		WebElement Phone = driver.findElement(By.id("wpsc_checkout_form_18"));
 		Phone.sendKeys(phn);
-		
+
 		WebElement RadioBtn = driver.findElement(By.id("shippingSameBilling"));
-		RadioBtn.click();	
-		
+		RadioBtn.click();
+
 	}
-	
-	public boolean clickOnPurchase()
-	{
-		WebElement Purchase = driver.findElement(By.xpath("//*[@id='wpsc_shopping_cart_container']/form/div[4]/div/div/span/input"));
+
+	public boolean clickOnPurchase() {
+		WebElement Purchase = driver
+				.findElement(By.xpath("//*[@id='wpsc_shopping_cart_container']/form/div[4]/div/div/span/input"));
 		Purchase.click();
 		return true;
 	}
-	
-	public boolean checkDuplicateItems(String Item)
-	{   int ProductCount = 0;
-	WebElement CheckoutTable = driver.findElement(By.className("checkout_cart"));
+
+	public boolean checkDuplicateItems(String Item) {
+		int ProductCount = 0;
+		WebElement CheckoutTable = driver.findElement(By.className("checkout_cart"));
 		List<WebElement> rows = CheckoutTable.findElements(By.tagName("tr"));
 		List<WebElement> columns = driver.findElements(By.tagName("td"));
-		//int col_count = columns.size();
-		int row_count = rows.size();
-		
-		for(WebElement row : rows)
-		{
-			if(columns.get(1).getText().equalsIgnoreCase(Item))
-					/*columns.get(1).getText().equalsIgnoreCase(Item)*/
+		for (WebElement row : rows) {
+			if (columns.get(0).getText().equalsIgnoreCase(Item))
+			/* columns.get(1).getText().equalsIgnoreCase(Item) */
 			{
 				ProductCount++;
 			}
 		}
-		
-		System.out.println("ProductCount:"+ProductCount);
-		
-		if(ProductCount > 1)
-		{
+
+		System.out.println("ProductCount:" + ProductCount);
+
+		if (ProductCount > 1) {
 			return true;
-		}
-		else{
+		} else {
 			return false;
 		}
 	}
