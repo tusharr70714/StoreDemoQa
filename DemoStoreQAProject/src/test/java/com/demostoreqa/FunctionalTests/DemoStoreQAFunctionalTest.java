@@ -1,9 +1,11 @@
 package com.demostoreqa.FunctionalTests;
 
 import org.testng.Assert;
+
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
 
 import java.net.MalformedURLException;
@@ -38,6 +40,7 @@ public class DemoStoreQAFunctionalTest {
 	public static final String ACCESS_KEY = "df5a2462-a305-4ad1-a97b-b52d11731cc8";
 	public static final String SURL = "http://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub";
 
+	//@Listeners(com.demostore.qa.TestNGlisteners.TestNGListener.class)
 	@BeforeMethod
 	public void setUp() throws MalformedURLException {
 		// Running on Local machine
